@@ -3,7 +3,13 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
-
+  state = {
+    persons: [
+    {name: 'Max', age: 18},
+    {name: 'Manu', age: 30},
+    {name: 'Stephanie', age: 20}
+    ]
+  }
 
   render() {
     return (
@@ -12,9 +18,9 @@ class App extends Component {
           <h1>Hi</h1>
           <p>This is really working!</p>
           <button> Switch Name </button>
-          <Person name="Max" age="18" />
-          <Person name="Manu" age="30"/>
-          <Person name="Stephanie" />
+          <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+          <Person name={this.state.persons[1].name} age={this.state.persons[1].age} />
+          <Person name={this.state.persons[2].name}  />
         </div>
       </React.Fragment>
 
