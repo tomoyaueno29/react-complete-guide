@@ -22,6 +22,17 @@ class App extends Component {
     })
   }
 
+  nameChangedHandler = (event) => {
+    this.setState({
+      persons: [
+        {name: 'Max', age: 22},
+        {name: event.target.value, age: 30},
+        {name: 'Stephanie', age: 20}
+      ]
+    })
+  }
+
+
   render() {
     return (
       <React.Fragment>
@@ -33,17 +44,20 @@ class App extends Component {
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
           click={this.switchNameHandler}
+          
           />
 
           <Person 
           name={this.state.persons[1].name}
           age={this.state.persons[1].age}
           click={this.switchNameHandler.bind(this, 'Max!')}
+          changed={this.nameChangedHandler}
           />
 
           <Person 
           name={this.state.persons[2].name}
           click={this.switchNameHandler}
+          
           />
         </div>
       </React.Fragment>
