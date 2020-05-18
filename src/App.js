@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Person from './Person/Person';
 
 class App extends Component {
   render() {
@@ -7,9 +8,8 @@ class App extends Component {
       <React.Fragment>
         <div className="App">
           <h1>Hi</h1>
-        </div>
-        <div className="App">
           <p>This is really working!</p>
+          <Person />
         </div>
       </React.Fragment>
 
