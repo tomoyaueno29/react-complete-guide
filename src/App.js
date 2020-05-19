@@ -42,7 +42,6 @@ class App extends Component {
       cursor: 'pointer'
     }
 
-
     return (
       <React.Fragment>
         <div className="App">
