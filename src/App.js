@@ -42,6 +42,14 @@ class App extends Component {
     })
   }
 
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1)
+    this.setState({
+      persons
+    })
+  } 
+
 
   render() {
     const style = {
@@ -52,6 +60,22 @@ class App extends Component {
       cursor: 'pointer'
     }
 
+    let person = null;
+
+    if(this.state.showPersons) {
+      person = (
+        <div >
+          { this.state.persons.map((person, index) => {
+            return <Person
+                    click={() => this.deletePersonHandler(index)}
+                    name={person.name}
+                    age={person.age}
+                   />
+          })}
+        </div> 
+      )
+    }
+
     return (
       <React.Fragment>
         <div className="App">
@@ -59,26 +83,11 @@ class App extends Component {
           <p>This is really working!</p>
           <button 
             style ={style}
-            onClick={() => this.togglePersonHandler}> Switch Name </button>
-          { this.state.showPerson === true ? 
-            <div >
-              <Person 
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-              
-              />
-              <Person 
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-              click={this.switchNameHandler.bind(this, 'Max!')}
-              changed={this.nameChangedHandler}
-              />
-              <Person 
-              name={this.state.persons[2].name}
-              
-              />
-            </div> : null
-          }
+            onClick={this.togglePersonHandler}
+          > 
+            Switch Name
+          </button>
+          {person}
         </div>
       </React.Fragment>
 
