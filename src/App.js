@@ -13,17 +13,6 @@ class App extends Component {
     showPersons: false
   }
 
-  // switchNameHandler = (newName) => {
-  //   // console.log('Was Clicked!!');
-  //   this.setState({
-  //     persons: [
-  //       {name: newName, age: 22},
-  //       {name: 'Manu', age: 30},
-  //       {name: 'Stephanie', age: 20}
-  //     ]
-  //   })
-  // }
-
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
@@ -62,11 +51,13 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
       font: 'inherit',
-      border: '1px solid blue',
+      color: '#fff',
+      border: 'none',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      outline: 'none'
     }
 
     let persons = null;
@@ -85,13 +76,24 @@ class App extends Component {
           })}
         </div> 
       )
+
+      style.backgroundColor = 'red';
+    };
+
+    // let classes = ['blue', 'bold'].join(' ');
+    let classes = []
+    if(this.state.persons.length <= 2){
+      classes.push('red');
     }
+    if(this.state.persons.length <= 1){
+      classes.push('bold')
+    } 
 
     return (
       <React.Fragment>
         <div className="App">
           <h1>Hi</h1>
-          <p>This is really working!</p>
+          <p className={classes.join(' ')}>This is really working!</p>
           <button 
             style ={style}
             onClick={this.togglePersonHandler}
