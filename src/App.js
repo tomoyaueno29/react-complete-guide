@@ -5,32 +5,41 @@ import Person from './Person/Person';
 class App extends Component {
   state = {
     persons: [
-    {id: 123, name: 'Max', age: 18},
-    {id: 345, name: 'Manu', age: 30},
-    {id: 678, name: 'Stephanie', age: 20}
+    {id: 'asfa1', name: 'Max', age: 18},
+    {id: 'vasdf1', name: 'Manu', age: 30},
+    {id: 'asdf11', name: 'Stephanie', age: 20}
     ],
     otherState: 'some other value',
     showPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    // console.log('Was Clicked!!');
-    this.setState({
-      persons: [
-        {name: newName, age: 22},
-        {name: 'Manu', age: 30},
-        {name: 'Stephanie', age: 20}
-      ]
-    })
-  }
+  // switchNameHandler = (newName) => {
+  //   // console.log('Was Clicked!!');
+  //   this.setState({
+  //     persons: [
+  //       {name: newName, age: 22},
+  //       {name: 'Manu', age: 30},
+  //       {name: 'Stephanie', age: 20}
+  //     ]
+  //   })
+  // }
 
-  nameChangedHandler = (event) => {
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
     this.setState({
-      persons: [
-        {name: 'Max', age: 22},
-        {name: event.target.value, age: 30},
-        {name: 'Stephanie', age: 20}
-      ]
+      persons
     })
   }
 
@@ -46,7 +55,7 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons.splice(personIndex, 1)
     this.setState({
-      persons
+      persons: persons
     })
   } 
 
@@ -60,10 +69,10 @@ class App extends Component {
       cursor: 'pointer'
     }
 
-    let person = null;
+    let persons = null;
 
     if(this.state.showPersons) {
-      person = (
+      persons = (
         <div >
           { this.state.persons.map((person, index) => {
             return <Person
@@ -71,6 +80,7 @@ class App extends Component {
                     name={person.name}
                     age={person.age}
                     key={person.id}
+                    changed={(event) => this.nameChangedHandler(event, person.id)}
                    />
           })}
         </div> 
@@ -88,7 +98,7 @@ class App extends Component {
           > 
             Switch Name
           </button>
-          {person}
+          {persons}
         </div>
       </React.Fragment>
 
