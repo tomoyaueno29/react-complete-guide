@@ -13,16 +13,16 @@ class App extends Component {
     showPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    // console.log('Was Clicked!!');
-    this.setState({
-      persons: [
-        {name: newName, age: 22},
-        {name: 'Manu', age: 30},
-        {name: 'Stephanie', age: 20}
-      ]
-    })
-  }
+  // switchNameHandler = (newName) => {
+  //   // console.log('Was Clicked!!');
+  //   this.setState({
+  //     persons: [
+  //       {name: newName, age: 22},
+  //       {name: 'Manu', age: 30},
+  //       {name: 'Stephanie', age: 20}
+  //     ]
+  //   })
+  // }
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
@@ -57,7 +57,7 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons.splice(personIndex, 1)
     this.setState({
-      persons
+      persons: persons
     })
   } 
 
