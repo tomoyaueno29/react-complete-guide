@@ -29,10 +29,8 @@ class App extends Component {
       return p.id === id;
     });
 
-    console.log(...this.state.person[personIndex])
-
     const person = {
-      ...this.state.person[personIndex]
+      ...this.state.persons[personIndex]
     };
 
     person.name = event.target.value;
@@ -71,10 +69,10 @@ class App extends Component {
       cursor: 'pointer'
     }
 
-    let person = null;
+    let persons = null;
 
     if(this.state.showPersons) {
-      person = (
+      persons = (
         <div >
           { this.state.persons.map((person, index) => {
             return <Person
@@ -100,7 +98,7 @@ class App extends Component {
           > 
             Switch Name
           </button>
-          {person}
+          {persons}
         </div>
       </React.Fragment>
 
