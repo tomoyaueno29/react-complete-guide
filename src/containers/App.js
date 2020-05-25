@@ -1,6 +1,28 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import './App.css';
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
+import Persons from  '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
+
+const StyledButton = styled.button`
+  background-color: ${props => {
+    return props.alt ? 'red' : 'green'
+  }};
+  font: inherit;
+  color: #fff;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    background-color: ${props => {
+      return props.alt ? 'salmon' : 'lightgreen'
+    }};
+    color: black;
+  }
+`
 
 class App extends Component {
   state = {
@@ -33,8 +55,9 @@ class App extends Component {
   }
 
   togglePersonHandler = () => {
+    console.log('clicked');
     const doesShow = this.state.showPersons
-    console.log(doesShow);
+    // console.log(doesShow);
     this.setState({
       showPersons: !doesShow
     })
@@ -50,6 +73,7 @@ class App extends Component {
 
 
   render() {
+
     const style = {
       backgroundColor: 'green',
       font: 'inherit',
@@ -57,53 +81,33 @@ class App extends Component {
       border: 'none',
       padding: '8px',
       cursor: 'pointer',
-      outline: 'none'
+      outline: 'none',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     }
 
     let persons = null;
 
     if(this.state.showPersons) {
-      persons = (
-        <div >
-          { this.state.persons.map((person, index) => {
-            return <Person
-                    click={() => this.deletePersonHandler(index)}
-                    name={person.name}
-                    age={person.age}
-                    key={person.id}
-                    changed={(event) => this.nameChangedHandler(event, person.id)}
-                   />
-          })}
-        </div> 
-      )
-
-      style.backgroundColor = 'red';
-    };
-
-    // let classes = ['blue', 'bold'].join(' ');
-    let classes = []
-    if(this.state.persons.length <= 2){
-      classes.push('red');
+      persons = <Persons  
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangedHandler}
+            />;
     }
-    if(this.state.persons.length <= 1){
-      classes.push('bold')
-    } 
+
 
     return (
-      <React.Fragment>
         <div className="App">
-          <h1>Hi</h1>
-          <p className={classes.join(' ')}>This is really working!</p>
-          <button 
-            style ={style}
-            onClick={this.togglePersonHandler}
-          > 
-            Switch Name
-          </button>
+          <Cockpit 
+            showPersons={this.state.showPersons}
+            persons={this.state.persons}
+            clicked={this.togglePersonHandler}
+          />
           {persons}
         </div>
-      </React.Fragment>
-
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1',null, 'Does this work now?'))
   }
