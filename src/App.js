@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import './App.css';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 import Person from './Person/Person';
 
