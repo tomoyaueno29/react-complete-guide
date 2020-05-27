@@ -26,8 +26,12 @@ class App extends Component {
     return state;
   }
 
+  componentWillMount(){
+    console.log("[App.js] componentWillMount");
+  }
+
   componentDidMount(){
-    console.log("[App.js] componentDidMount")
+    console.log("[App.js] componentDidMount");
   }
 
   nameChangedHandler = (event, id) => {
@@ -73,7 +77,7 @@ class App extends Component {
     let persons = null;
 
     if(this.state.showPersons) {
-      persons = <Persons  
+      persons = <Persons
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
             changed={this.nameChangedHandler}
