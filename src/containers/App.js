@@ -5,25 +5,6 @@ import Person from '../components/Persons/Person/Person';
 import Persons from  '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
-const StyledButton = styled.button`
-  background-color: ${props => {
-    return props.alt ? 'red' : 'green'
-  }};
-  font: inherit;
-  color: #fff;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-  outline: none;
-
-  &:hover {
-    background-color: ${props => {
-      return props.alt ? 'salmon' : 'lightgreen'
-    }};
-    color: black;
-  }
-`
-
 class App extends Component {
   state = {
     persons: [
@@ -34,7 +15,7 @@ class App extends Component {
     otherState: 'some other value',
     showPersons: false
   }
-
+  
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
@@ -102,6 +83,7 @@ class App extends Component {
     return (
         <div className="App">
           <Cockpit 
+            title={this.props.appTitle}
             showPersons={this.state.showPersons}
             persons={this.state.persons}
             clicked={this.togglePersonHandler}
