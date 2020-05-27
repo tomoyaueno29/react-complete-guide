@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import classes from './Cockpit.css'
 
 const cockpit = (props) => {
+  useEffect(() => {
+
+    console.log('[Cockpit.js] useEffect');
+    // Http request...
+    setTimeout(() => {
+      alert('Saved data to cloud!')
+    }, 1000);
+  }, []);
 
   const classes = []
   let btnClass = '';
@@ -20,7 +28,7 @@ const cockpit = (props) => {
       <h1>{props.title}</h1>
       <p className={classes.join(' ')}>This is really working!</p>
       <button
-        alt={props.showPersons}
+        // alt={props.showPersons}
         onClick={props.clicked}
       > 
         Toggle Person</button>
