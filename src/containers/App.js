@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import './App.css';
 import Person from '../components/Persons/Person/Person';
 import Persons from  '../components/Persons/Persons';
@@ -15,7 +14,7 @@ class App extends Component {
     otherState: 'some other value',
     showPersons: false
   }
-  
+
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
