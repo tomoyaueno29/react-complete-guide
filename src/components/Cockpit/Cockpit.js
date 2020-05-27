@@ -9,7 +9,10 @@ const cockpit = (props) => {
     setTimeout(() => {
       alert('Saved data to cloud!')
     }, 1000);
+    return 
   }, []);
+  // [] execute it only first time
+  // just need componentDidMout.
 
   const classes = []
   let btnClass = '';
