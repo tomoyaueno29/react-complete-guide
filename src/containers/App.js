@@ -20,6 +20,16 @@ class App extends Component {
 
   }
 
+  getDerivedStateFromProps(props, state){
+
+    console.log("[App.js] getDerived", props);
+    return state;
+  }
+
+  componentDidMount(){
+    console.log("[App.js] componentDidMount")
+  }
+
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
@@ -58,20 +68,7 @@ class App extends Component {
 
 
   render() {
-
-    const style = {
-      backgroundColor: 'green',
-      font: 'inherit',
-      color: '#fff',
-      border: 'none',
-      padding: '8px',
-      cursor: 'pointer',
-      outline: 'none',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    }
+    console.log("[App.js] render")
 
     let persons = null;
 
