@@ -14,10 +14,10 @@ const cockpit = (props) => {
   }
   if(props.persons.length <= 1){
     classes.push('bold')
-  } 
+  }
   return (
     <div className={classes.Cockpit}>
-      <h1>Hi, I'm React App</h1>
+      <h1>{props.title}</h1>
       <p className={classes.join(' ')}>This is really working!</p>
       <button
         alt={props.showPersons}
