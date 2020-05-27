@@ -20,11 +20,10 @@ class App extends Component {
 
   }
 
-  getDerivedStateFromProps(props, state){
-
-    console.log("[App.js] getDerived", props);
-    return state;
-  }
+  // getDerivedStateFromProps(props, state){
+  //   console.log("[App.js] getDerived", props);
+  //   return state;
+  // }
 
   componentWillMount(){
     console.log("[App.js] componentWillMount");
@@ -32,6 +31,15 @@ class App extends Component {
 
   componentDidMount(){
     console.log("[App.js] componentDidMount");
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("[App.js] shouldComponentUpdate");
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log("[App.js] componentDidUpdate");
   }
 
   nameChangedHandler = (event, id) => {
